@@ -4,29 +4,56 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>WeatherForecast</title>
   </head>
   <body>
-    <div class="row">
-      <aside class="col-lg-3">
-        <form id="search-form" class="form">
-          <input type="text" id="city-search" placeholder="Search City Here" />
-          <button type="submit" class="btn search-button" id="search-button">
-            Search
-          </button>
-        </form>
-      </aside>
-      <div class="col-lg-9 jumbotron m-3">
-        <section class="mt-3" id="current-weather"></section>
-        <section class="mt-3 row" id="five-day-forecast"></section>
+    <!--This will be the header of the webpage defining the head-->
+    <header>
+      <nav class="p-3 mb-2 bg-primary text-white text-center">
+        <h1 class="text-light">Weather Dashboard</h1>
+      </nav>
+    </header>
+
+    <div class="container-fluid">
+      <!--aside menu-->
+      <div class="row">
+        <aside id="aside" class=" col-sm-12 col-md-3 ml-0 overflow-auto">
+          <form id="search-form" class="form mr-md-0 col-sm-12">
+            <h3>Search for a city</h3>
+            <input type="text" id="city-search" placeholder="Type the city name" />
+            <button type="submit" class="btn btn-primary" id="search-button">Search</button>
+          </form>
+
+          <div id="search-history"></div>
+        </aside>
+
+        <!--Main page-->
+          <div id="main" class="col-md-9 overflow-auto">
+            <section class="row">
+              <div class="col-md-12" id="city-result"></div>
+            </section>
+            <section class="row justify-content-xs-center">
+              <div id="forcast-container" class="col-md-12">
+                <h4 id="forcast-title">5-Day Forecast: </h4>
+              </div>
+            </section>
+
+            <section class="row">
+              <div id="card1" class="card-body col-xs-1 col-sm-2 col-md-4  weatherBlock" data-count="1"></div>
+              <div id="card2" class="card-body col-xs-1 col-sm-2 col-md-4 weatherBlock" data-count="2" ></div>
+              <div id="card3" class="card-body col-xs-1 col-sm-2 col-md-4 weatherBlock" data-count="3"></div>
+              <div id="card4" class="card-body col-xs-1 weatherBlock col-sm-2 col-md-4" data-count="4"></div>
+              <div id="card5"class="card-body col-xs-1 weatherBlock col-sm-2 col-md-4" data-count="5"></div>
+              
+            </section>
+          </div>
       </div>
+      
+
+      
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es-us.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="main.js"></script>
   </body>

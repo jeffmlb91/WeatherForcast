@@ -1,3 +1,19 @@
+let currentCityEl = document.getElementById('currenty-city');
+let currentTempEl = document.getElementById('current-temp');
+let currentWindEl = document.getElementById('current-wind');
+let currentHumidityEl = document.getElementById('current-humidity');
+let currentUvEl = document.getElementById('current-UV');
+
+
+
+
+
+
+
+
+
+
+
 //using Jquery for the project
 $(document).ready(function () {
     var apiKey = "47b120c524cc8fed012b7e7f808dd579";
@@ -15,25 +31,33 @@ $(document).ready(function () {
       console.log("userSearch inside getCurrentWEather", userSearch);
   
       let currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${userSearch}&appid=${apiKey}&units=metric`;
+      
   
-      fetch(currentWeatherURL)
-        .then((response) => response.json())
-        .then(function (data) {
-          console.log("Weather DATA", data);
-          let title = $("<h2>").text(data.name);
-          let temp = $("<h3>").text("Temperature: " + data.main.temp + "C");
-          let humidity = $("<h3>").text("Humidity: " + data.main.humidity + "%");
-          let wind = $("<h3>").text("Wind: " + data.wind.speed + " Km/h");
-  
-          $("#current-weather").append(title, temp, humidity, wind);
-  
-          let coords = {
-            lat: data.coord.lat,
-            lon: data.coord.lon,
-          };
-  
-          getFiveDayForecast(coords);
-        });
+      fetch(currentWeatherURL).then(response => {
+          if(response.ok) {
+              response.json().then(data => {
+
+                console.log("Weather DATA", data);
+                currentCityEl.textContent = data.name;
+                currentTempEl.textContent = data.main.temp + " C";
+                currentWindEl.textContent = data.wind.speed + " Km/h";
+                currentHumidityEl.textContent = data.main.humidity + " %";
+                currentUvEl.textContent = uvData.value;
+
+                
+                
+        
+                let coords = {
+                  lat: data.coord.lat,
+                  lon: data.coord.lon,
+                };
+        
+                getFiveDayForecast(coords);
+              })
+          }
+      }
+        
+    )
     }
   
     function getFiveDayForecast(coords) {
@@ -51,9 +75,9 @@ $(document).ready(function () {
           let cardBody = $("<div class='card-body'>");
           let cardTitle = $("<div class='card-title'>");
   
-          for (var i = 1; i < data.daily.length; i++) {
-            console.log(data.daily);
-          }
+        //   for i = 1; i < data.daily.length; i++) {
+        //     console.log(data.daily);
+        //   }
         });
     }
-  });
+});
